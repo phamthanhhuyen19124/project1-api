@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\brand;
-use App\Models\category;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -25,9 +24,21 @@ class BrandController extends Controller
             ->orderBy('id', 'desc')
             ->paginate($limit); //phan trang
     }
-    public function show($id) //hiện ra mh
+    public function show($id) //lay ra id mog muon
     {
         $brand = brand::findOrFail($id); // truy vaans vao id
         return response()->json($brand);
     }
+    public function update($id, Request $request) //chỉnh sửa
+    {
+        $brand = brand::findOrFail($id);
+        $brand->update($request->all());
+        return response()->json($brand);
+    }
+//    public function delete($id) // xoas
+//    {
+//        $brand = brand::findOrFail($id);
+//        $brand->delete();
+//        return response()->json('successfully deleted');
+//    }
 }

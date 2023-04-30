@@ -12,4 +12,8 @@ class brand extends Model
     protected $fillable = [
         'name'
     ];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 }

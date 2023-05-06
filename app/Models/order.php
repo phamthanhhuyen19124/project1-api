@@ -10,13 +10,21 @@ class order extends Model
     use HasFactory;
     protected $table = 'order';
     protected $fillable = [
-        'name',
+        'product_id',
+        'user_id',
         'total',
-        'price'
     ];
     protected $casts = [
-        'create_time' => 'timestamp',
-
+        'create_at' => 'timestamp',
     ];
+    public function product()
+    {
+        return $this->hasOne(product::class, 'id', 'product_id');
+    }
+    public function user()
+    {
+        return $this->hasOne(user::class, 'id', 'user_id');
+    }
+
 
 }

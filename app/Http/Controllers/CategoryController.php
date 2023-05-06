@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class CategoryController extends Controller
 {
@@ -39,7 +40,7 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    public function delete($id) // xoas
+    public function destroy($id) // xoas
     {
         $category = category::findOrFail($id);
         $category->delete();

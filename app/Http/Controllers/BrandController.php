@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\brand;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class BrandController extends Controller
 {
@@ -35,10 +36,10 @@ class BrandController extends Controller
         $brand->update($request->all());
         return response()->json($brand);
     }
-//    public function delete($id) // xoas
-//    {
-//        $brand = brand::findOrFail($id);
-//        $brand->delete();
-//        return response()->json('successfully deleted');
-//    }
+    public function destroy($id) // xoas
+    {
+        $brand = brand::findOrFail($id);
+        $brand->delete();
+        return response()->json('successfully deleted');
+    }
 }

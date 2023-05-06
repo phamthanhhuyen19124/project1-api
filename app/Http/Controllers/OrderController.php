@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 use App\Models\order;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class OrderController extends Controller
 {
     public function store(Request $request) // thêm mới
     {
         $order = new order([
-            'name' => $request->get('name'),
+            'user_id' => $request->get('user_id'),
             'total' => $request->get('total'),
-            'price' => $request->get('price'),
+            'product_id' => $request->get('product_id'),
         ]);
         $request->all();
         $order->save();
@@ -19,15 +20,14 @@ class OrderController extends Controller
     }
     public function index(Request $request) //get
     {
-        $search = $request->input('search') || '';
         $limit = $request->input('limit') ? $request->input('limit') : 10;
-        return category::where('name', 'like', '%'.$search.'%')
+        return order::with(['product','user'])
             ->orderBy('id', 'desc')
             ->paginate($limit);
     }
     public function show($id) //hiện ra mh
     {
-        $order = category::findOrFail($id);
+        $order = order::findOrFail($id);
         return response()->json($order);
     }
     public function update($id, Request $request) //chỉnh sửa
@@ -36,7 +36,7 @@ class OrderController extends Controller
         $order->update($request->all());
         return response()->json($order);
     }
-    public function delete($id) // xoas
+    public function destroy($id) // xoas
     {
         $order = order::findOrFail($id);
         $order->delete();

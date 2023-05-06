@@ -16,5 +16,20 @@ class product extends Model
         'category_id',
         'brand_id'
     ];
+
+    protected $hidden = [ 'brand_id', 'category_id'];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
     use HasFactory;
+    public function category()
+    {
+        return $this->hasOne(category::class, 'id', 'category_id');
+    }
+
+    public function brand()
+    {
+        return $this->hasOne(brand::class, 'id', 'brand_id');
+    }
 }

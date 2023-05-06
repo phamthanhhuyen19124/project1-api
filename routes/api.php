@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
-use \App\Http\Controllers\OrderController;
-use \App\Http\Controllers\BrandController;
-use \App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +31,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/categories', CategoryController::class);
 Route::resource('/order', OrderController::class);
 Route::resource('/brand', BrandController::class);
-Route::resource('/product', Controller::class);
+Route::resource('/products', ProductController::class);
+Route::resource('/user', UserController::class);
+Route::resource('/new', NewController::class);

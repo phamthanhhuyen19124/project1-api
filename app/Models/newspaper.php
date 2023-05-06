@@ -9,12 +9,14 @@ class newspaper extends Model
 {
     use HasFactory;
     protected $table = 'new';
-//    protected $fillable = [
-//        'title',
-//        'content'
-//    ];
+    protected $fillable = [
+        'title',
+        'content'
+    ];
     protected $casts = [
-        'create_time' => 'timestamp',
+        "created_at" => 'timestamp',
+        "updated_at" => 'timestamp',
+
     ];
 }
 
